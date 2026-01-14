@@ -132,6 +132,17 @@ body {
   transition:transform .3s, box-shadow .3s, border-color .3s;
 }
 .card:hover { transform:translateY(-6px); box-shadow:0 12px 28px rgba(2,6,23,.28); border-color:rgba(255,255,255,.26); }
+/* ===== Base image inside cards (default) ===== */
+.card > a > img,
+.card .card-media img,
+.card .certificate-img {
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:10px;
+  margin:0 auto 1rem;
+  box-shadow:0 4px 14px rgba(0,0,0,.22);
+}
 
 /* ===== Certifications thumbnail (tidak kepotong berlebihan & aman di mobile) ===== */
 .certificate-img{
@@ -449,10 +460,10 @@ footer { background:rgba(17,24,39,.6); color:#cbd5e1; text-align:center; padding
 #scrollTopBtn.show { display:block; opacity:1; }
 
 /* =======================
-   Lightbox – FULLSCREEN + BACK BUTTON
+   Lightbox – FULLSCREEN (rapi & mobile-safe)
    ======================= */
 .lightbox{
-  display:none;
+  display:none;                 /* dibuka via JS jadi flex */
   position:fixed;
   inset:0;
   z-index:3000;
@@ -462,7 +473,6 @@ footer { background:rgba(17,24,39,.6); color:#cbd5e1; text-align:center; padding
   );
   justify-content:center;
   align-items:center;
-  flex-direction:column;
   padding: 72px 18px 24px;
 }
 
@@ -473,14 +483,17 @@ footer { background:rgba(17,24,39,.6); color:#cbd5e1; text-align:center; padding
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap: 12px;
+  gap:12px;
+
+  overflow:auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .lightbox-content{
   width:100%;
   max-width:1200px;
-  max-height: calc(100vh - 170px);
   height:auto;
+  max-height: calc(100vh - 190px);
   object-fit: contain;
   border-radius:14px;
   box-shadow:0 18px 50px rgba(0,0,0,.55);
@@ -489,7 +502,7 @@ footer { background:rgba(17,24,39,.6); color:#cbd5e1; text-align:center; padding
 }
 
 .lightbox #caption{
-  margin-top: .35rem;
+  margin-top:.35rem;
   text-align:center;
   color:#e5e7eb;
   font-size:.95rem;
@@ -537,14 +550,14 @@ footer { background:rgba(17,24,39,.6); color:#cbd5e1; text-align:center; padding
   transform: translateY(-1px);
   background: rgba(255,255,255,.16);
 }
-.lightbox .lb-back:active{ transform: translateY(0); }
 
 @media (max-width:520px){
   .lightbox{ padding:68px 12px 18px; }
   .lightbox .lb-inner{ width:96vw; }
-  .lightbox-content{ max-height: calc(100vh - 190px); border-radius:12px; }
+  .lightbox-content{ max-height: calc(100vh - 220px); border-radius:12px; }
   .lightbox .lb-back{ padding:9px 12px; font-size:.92rem; }
 }
+
 
 /* =======================
    Reveal
@@ -703,64 +716,261 @@ footer { background:rgba(17,24,39,.6); color:#cbd5e1; text-align:center; padding
 @media (prefers-reduced-motion:reduce) {
   *, *::before, *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
 }
-/* Mobile View Live Fix */
-@media (max-width: 768px) {
-  .lightbox-content {
-    width: auto;
-    max-width: none;
-    height: auto;
-    max-height: none;
-  }
 
-  .lb-inner {
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  .lb-inner::-webkit-scrollbar {
-    height: 6px;
-  }
+/* ===== Experience image fix (anti turun / anti kepotong aneh) ===== */
+#experience .card-media{
+  overflow: hidden;
+  border-radius: 10px;
+  margin: 0 auto 1rem;
+  box-shadow: 0 4px 14px rgba(0,0,0,.22);
+  background: rgba(255,255,255,.03);
 }
-.lightbox-content {
+
+/* thumbnail konsisten */
+#experience .card-media img{
   display: block;
-  touch-action: pan-x pan-y;
-}
-/* ===== FIX: Lightbox certificate tampil full di mobile ===== */
-.lightbox {
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;     /* bikin rapi */
+  object-fit: cover;        /* crop hanya di thumbnail */
 }
 
-.lightbox .lb-inner{
-  width: min(1200px, 96vw);
-  height: calc(100vh - 140px);
-  overflow: auto;               /* kalau butuh scroll */
-}
-
-/* Ini yang paling penting */
-.lightbox .lightbox-content{
-  width: min(1200px, 96vw) !important;
-  height: auto !important;
-  max-height: calc(100vh - 200px) !important;
-  object-fit: contain !important; /* biar FULL kelihatan */
-}
-
-/* Kalau ternyata lightbox-content kamu adalah iframe/embed (PDF) */
-.lightbox iframe.lightbox-content,
-.lightbox embed.lightbox-content{
-  width: min(1200px, 96vw) !important;
-  height: calc(100vh - 200px) !important;
-  max-height: none !important;
-  border: 0;
-}
-
-/* Mobile */
+/* mobile: sedikit beda rasio biar nggak terlalu “gepung” */
 @media (max-width: 520px){
-  .lightbox .lb-inner{
-    width: 96vw;
-    height: calc(100vh - 160px);
-  }
-  .lightbox .lightbox-content{
-    max-height: calc(100vh - 240px) !important;
+  #experience .card-media img{
+    aspect-ratio: 4 / 3;
   }
 }
+/* =========================================================
+   PATCH / POLISH (tempel paling bawah biar menang cascade)
+   ========================================================= */
+
+/* 1) Base typography kecil biar konsisten */
+p { color:#cbd5e1; }
+strong { color:#fff; }
+
+/* 2) Nav: pastikan sticky tetap blur halus */
+.navbar{
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* 3) Hero CTA spacing */
+.hero-cta{
+  display:flex;
+  gap:.9rem;
+  flex-wrap:wrap;
+  margin-top:1.2rem;
+}
+@media (max-width: 480px){
+  .hero-cta a{ width:100%; }
+}
+
+/* 4) About highlights list biar rapi (li tidak nabrak) */
+.about-highlights li{
+  padding:.55rem .7rem;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.03);
+}
+
+/* 5) Projects: pastikan project-card punya style “card” juga
+   (karena HTML kamu pakai <article class="project-card luxe">) */
+.project-card{
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 6px 18px rgba(2,6,23,.22);
+  transition:transform .3s, box-shadow .3s, border-color .3s;
+}
+.project-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 28px rgba(2,6,23,.28);
+  border-color:rgba(255,255,255,.26);
+}
+
+/* 6) Projects: text spacing lebih enak */
+.project-content{ padding:.2rem .1rem; }
+
+/* 7) Experience/Cert points: kamu pakai class .exp-points di HTML,
+      tapi di CSS belum ada -> bikin list rapi */
+.exp-points{
+  margin-top:.6rem;
+  margin-left:1.1rem;
+  color:#cbd5e1;
+  display:grid;
+  gap:.35rem;
+}
+.exp-points li{ line-height:1.55; }
+
+/* 8) Hidden visually (di HTML kamu pakai .hidden-visually) */
+.hidden-visually{
+  position:absolute !important;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* 9) Lightbox: kalau mau pakai class show (biar rapi, tidak inline) */
+.lightbox.show{ display:flex; }
+
+/* 10) Mobile nav: biar menu tidak kepotong layar */
+@media (max-width:768px){
+  .nav-links{
+    max-height: calc(100vh - 90px);
+    overflow:auto;
+  }
+}
+/* =========================================================
+   FINAL PATCH – sesuai HTML + JS terbaru
+   Tempel PALING BAWAH style.css
+   ========================================================= */
+
+/* 0) Utility: hidden visually (HTML pakai .hidden-visually) */
+.hidden-visually{
+  position:absolute !important;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* 1) Hero CTA spacing (HTML pakai .hero-cta) */
+.hero-cta{
+  display:flex;
+  gap:.9rem;
+  flex-wrap:wrap;
+  margin-top:1.2rem;
+}
+@media (max-width:480px){
+  .hero-cta a{ width:100%; }
+}
+
+/* 2) About highlights list rapih */
+.about-highlights li{
+  padding:.55rem .7rem;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.03);
+}
+
+/* 3) Projects: pastikan <article class="project-card"> juga "card feel" */
+.project-card{
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 6px 18px rgba(2,6,23,.22);
+  transition:transform .3s, box-shadow .3s, border-color .3s;
+}
+.project-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 28px rgba(2,6,23,.28);
+  border-color:rgba(255,255,255,.26);
+}
+.project-content{ padding:.2rem .1rem; }
+
+/* 4) exp-points (HTML kamu pakai .exp-points, CSS belum ada) */
+.exp-points{
+  margin-top:.6rem;
+  margin-left:1.1rem;
+  color:#cbd5e1;
+  display:grid;
+  gap:.35rem;
+}
+.exp-points li{ line-height:1.55; }
+
+/* 5) Navbar blur halus */
+.navbar{
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* 6) Mobile nav: menu tidak kepotong */
+@media (max-width:768px){
+  .nav-links{
+    max-height: calc(100vh - 90px);
+    overflow:auto;
+  }
+}
+
+/* 7) Lightbox: close sekarang <button>, rapihin default button style */
+.lightbox .close{
+  border:0;
+  appearance:none;
+  -webkit-appearance:none;
+}
+
+/* 8) CV CHOICE MODAL (HTML: #cvChoice .cv-box .cv-close .cv-buttons) */
+.cv-choice{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding: 18px;
+  z-index:4000;
+  background: rgba(0,0,0,.60);
+}
+.cv-choice[hidden]{ display:none; }
+
+.cv-box{
+  width: min(420px, 92vw);
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 16px;
+  box-shadow: 0 18px 55px rgba(0,0,0,.55);
+  padding: 1.35rem 1.35rem 1.15rem;
+  text-align:center;
+  position:relative;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.cv-box h3{
+  margin: 0 0 .35rem 0;
+  font-size: 1.15rem;
+  color:#fff;
+}
+.cv-box p{
+  margin: 0 0 1rem 0;
+  color:#cbd5e1;
+}
+
+.cv-buttons{
+  display:flex;
+  gap: 12px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+/* tombol close X */
+.cv-close{
+  position:absolute;
+  top: 10px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.08);
+  color:#fff;
+  cursor:pointer;
+  font-size: 1.6rem;
+  line-height: 1;
+  display:grid;
+  place-items:center;
+}
+.cv-close:hover{ background: rgba(255,255,255,.14); }
+
+/* 9) OPTIONAL: kalau kamu pakai class btn-primary di CV Indo */
+.btn-primary{}
+
+/* 10) Aksesibilitas fokus untuk tombol modal */
+:where(.cv-close, #btnCv, .hamburger, .close, .lb-back):focus-visible{
+  outline:2px solid #22d3ee;
+  outline-offset:3px;
+}
+

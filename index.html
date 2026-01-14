@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Portfolio Raju Nuardi Akbar - Data Analyst & Web Developer. Proyek, sertifikat, pengalaman organisasi, dan kontak.">
+  <meta name="description" content="Portfolio Raju Nuardi Akbar - Data Analyst  Proyek, sertifikat, pengalaman organisasi, dan kontak.">
   <meta name="author" content="Raju Nuardi Akbar" />
   <meta name="theme-color" content="#111827" />
   <title>Raju Nuardi Akbar | Portfolio</title>
+
   <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="bg-neutral">
   <!-- Ambient background -->
   <div class="fx-ambient" aria-hidden="true">
@@ -22,15 +24,19 @@
   </div>
 
   <!-- Loader / Progress -->
-  <div id="loader" role="status" aria-live="polite"><div class="spinner" aria-hidden="true"></div></div>
+  <div id="loader" role="status" aria-live="polite">
+    <div class="spinner" aria-hidden="true"></div>
+  </div>
   <div id="progress-bar" aria-hidden="true"></div>
 
   <!-- Navbar -->
   <header class="navbar" role="banner">
     <div class="container nav-container">
       <div class="logo">Raju Nuardi Akbar</div>
+
       <nav aria-label="Navigasi utama">
-        <ul class="nav-links">
+        <!-- FIX: tambah id="primary-nav" agar aria-controls hamburger valid -->
+        <ul class="nav-links" id="primary-nav">
           <li><a href="#home" class="active">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills & Tools</a></li>
@@ -40,10 +46,21 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+
       <div class="nav-right">
-        <a href="cv.pdf" download class="btn ripple glow">Download CV</a>
+        <!-- FIX: sudah benar pakai button untuk modal CV -->
+        <button type="button" class="btn ripple glow" id="btnCv">Download CV</button>
+
         <button class="toggle-theme" type="button" aria-label="Ubah tema latar">🌞</button>
-        <button class="hamburger" type="button" aria-label="Buka menu">☰</button>
+
+        <!-- FIX: aria-controls mengarah ke #primary-nav -->
+        <button
+          class="hamburger"
+          type="button"
+          aria-label="Buka menu"
+          aria-controls="primary-nav"
+          aria-expanded="false"
+        >☰</button>
       </div>
     </div>
   </header>
@@ -55,15 +72,27 @@
         <div class="hero-text reveal fade-up">
           <h1 id="home-h">Hello, I’m <span id="typed">Raju Nuardi Akbar</span></h1>
           <p>Data Analyst | Data Processing & Data Visualization</p>
-          <p class="tagline">Data Analyst with a strong foundation in data processing and visualization, focused on transforming raw data into actionable insights for better decision-making.</p>
+          <p class="tagline">
+            Data Analyst with a strong foundation in data processing and visualization,
+            focused on transforming raw data into actionable insights for better decision-making.
+          </p>
 
           <div class="hero-cta">
             <a href="#projects" class="btn ripple glow">View Projects</a>
             <a href="#contact" class="btn-outline ripple glow">Hire Me</a>
           </div>
         </div>
+
         <div class="hero-img reveal fade-left">
-          <img src="images/Profile.webp" alt="Portrait of Raju Nuardi Akbar" class="elevate" loading="lazy" decoding="async" width="320" height="320">
+          <img
+            src="images/Profile.webp"
+            alt="Portrait of Raju Nuardi Akbar"
+            class="elevate"
+            loading="lazy"
+            decoding="async"
+            width="320"
+            height="320"
+          >
         </div>
       </div>
     </section>
@@ -72,6 +101,7 @@
     <section id="about" class="section alt" aria-labelledby="about-h">
       <div class="container section-card about-card luxe reveal fade-up">
         <h2 id="about-h" class="section-title">About Me ✨</h2>
+
         <div class="about-body">
           <div class="about-bio">
             <p>
@@ -80,10 +110,11 @@
 
             <ul class="about-highlights">
               <li>✅ <strong>Data Analysis & Insights:</strong> Mengolah dan menganalisis dataset untuk menghasilkan actionable insights yang mendukung pengambilan keputusan bisnis.</li>
-<li>✅ <strong>Data Processing:</strong> Mahir dalam pembersihan dan pemrosesan data menggunakan SQL dan Excel (Pivot, Power Query, VLOOKUP) untuk memastikan akurasi data.</li>
-<li>✅ <strong>Data Visualization:</strong> Berpengalaman dalam membangun dashboard interaktif yang intuitif menggunakan Power BI, Tableau, dan Looker Studio.</li>
-<li>✅ <strong>Statistical Programming:</strong> Memiliki pemahaman kuat dalam analisis data eksploratif (EDA) menggunakan Python (Pandas, NumPy).</li>
-<li>✅ <strong>Structured Thinking:</strong> Terbiasa bekerja dengan pendekatan yang terstruktur, mulai dari pendefinisian masalah hingga penyajian solusi berbasis data.</li>
+              <li>✅ <strong>Data Processing:</strong> Mahir dalam pembersihan dan pemrosesan data menggunakan SQL dan Excel (Pivot, Power Query, VLOOKUP) untuk memastikan akurasi data.</li>
+              <li>✅ <strong>Data Visualization:</strong> Berpengalaman dalam membangun dashboard interaktif yang intuitif menggunakan Power BI, Tableau, dan Looker Studio.</li>
+              <li>✅ <strong>Statistical Programming:</strong> Memiliki pemahaman kuat dalam analisis data eksploratif (EDA) menggunakan Python (Pandas, NumPy).</li>
+              <li>✅ <strong>Structured Thinking:</strong> Terbiasa bekerja dengan pendekatan yang terstruktur, mulai dari pendefinisian masalah hingga penyajian solusi berbasis data.</li>
+            </ul>
           </div>
 
           <aside class="about-aside">
@@ -95,360 +126,345 @@
       </div>
     </section>
 
+    <!-- Skills -->
     <section id="skills" class="section" aria-labelledby="skills-h">
-  <div class="container section-card skills-card luxe reveal fade-up">
-    <h2 id="skills-h" class="section-title">Skills & Tools 🧰</h2>
+      <div class="container section-card skills-card luxe reveal fade-up">
+        <h2 id="skills-h" class="section-title">Skills & Tools 🧰</h2>
 
-    <div class="skills-grid">
-      <div>
-        <h3 class="h3-quiet">Data Analytics Core</h3>
+        <div class="skills-grid">
+          <div>
+            <h3 class="h3-quiet">Data Analytics Core</h3>
 
-        <div class="skill-bar">
-          <span>SQL (Data Cleaning & Querying)</span>
-          <div class="bar glossy"><div class="fill" data-percent="70"><span>0%</span></div></div>
-        </div>
+            <div class="skill-bar">
+              <span>SQL (Data Cleaning & Querying)</span>
+              <div class="bar glossy"><div class="fill" data-percent="70"><span>0%</span></div></div>
+            </div>
 
-        <div class="skill-bar">
-          <span>Excel (Pivot, Power Query, Analysis)</span>
-          <div class="bar glossy"><div class="fill" data-percent="75"><span>0%</span></div></div>
-        </div>
+            <div class="skill-bar">
+              <span>Excel (Pivot, Power Query, Analysis)</span>
+              <div class="bar glossy"><div class="fill" data-percent="75"><span>0%</span></div></div>
+            </div>
 
-        <div class="skill-bar">
-          <span>Power BI (Interactive Dashboard)</span>
-          <div class="bar glossy"><div class="fill" data-percent="70"><span>0%</span></div></div>
-        </div>
+            <div class="skill-bar">
+              <span>Power BI (Interactive Dashboard)</span>
+              <div class="bar glossy"><div class="fill" data-percent="70"><span>0%</span></div></div>
+            </div>
 
-        <div class="skill-bar">
-          <span>Python (Pandas & NumPy for EDA)</span>
-          <div class="bar glossy"><div class="fill" data-percent="65"><span>0%</span></div></div>
-        </div>
+            <div class="skill-bar">
+              <span>Python (Pandas & NumPy for EDA)</span>
+              <div class="bar glossy"><div class="fill" data-percent="65"><span>0%</span></div></div>
+            </div>
 
-        <h3 class="h3-quiet" style="margin-top:1.25rem;">Data Visualization Tools</h3>
+            <h3 class="h3-quiet" style="margin-top:1.25rem;">Data Visualization Tools</h3>
 
-        <div class="skill-bar">
-          <span>Tableau</span>
-          <div class="bar glossy"><div class="fill" data-percent="60"><span>0%</span></div></div>
-        </div>
+            <div class="skill-bar">
+              <span>Tableau</span>
+              <div class="bar glossy"><div class="fill" data-percent="60"><span>0%</span></div></div>
+            </div>
 
-        <div class="skill-bar">
-          <span>Looker Studio</span>
-          <div class="bar glossy"><div class="fill" data-percent="60"><span>0%</span></div></div>
-        </div>
+            <div class="skill-bar">
+              <span>Looker Studio</span>
+              <div class="bar glossy"><div class="fill" data-percent="60"><span>0%</span></div></div>
+            </div>
 
-        <h3 class="h3-quiet" style="margin-top:1.25rem;">Reporting & Documentation</h3>
+            <h3 class="h3-quiet" style="margin-top:1.25rem;">Reporting & Documentation</h3>
 
-        <div class="skill-bar">
-          <span>PowerPoint (Business Presentation)</span>
-          <div class="bar glossy"><div class="fill" data-percent="70"><span>0%</span></div></div>
-        </div>
+            <div class="skill-bar">
+              <span>PowerPoint (Business Presentation)</span>
+              <div class="bar glossy"><div class="fill" data-percent="70"><span>0%</span></div></div>
+            </div>
 
-        <div class="skill-bar">
-          <span>Technical Documentation</span>
-          <div class="bar glossy"><div class="fill" data-percent="70"><span>0%</span></div></div>
-        </div>
-      </div>
-
-      <div>
-        <h3 class="h3-quiet">Professional Skills</h3>
-        <div class="circle-skills">
-          <div class="circle" data-percent="85">
-            <svg><circle class="bg"></circle><circle class="progress"></circle></svg>
-            <div class="number">0%</div>
-            <p>Analytical Thinking</p>
+            <div class="skill-bar">
+              <span>Technical Documentation</span>
+              <div class="bar glossy"><div class="fill" data-percent="70"><span>0%</span></div></div>
+            </div>
           </div>
 
-          <div class="circle" data-percent="80">
-            <svg><circle class="bg"></circle><circle class="progress"></circle></svg>
-            <div class="number">0%</div>
-            <p>Problem Solving</p>
+          <div>
+            <h3 class="h3-quiet">Professional Skills</h3>
+            <div class="circle-skills">
+              <div class="circle" data-percent="85">
+                <svg><circle class="bg"></circle><circle class="progress"></circle></svg>
+                <div class="number">0%</div>
+                <p>Analytical Thinking</p>
+              </div>
+
+              <div class="circle" data-percent="80">
+                <svg><circle class="bg"></circle><circle class="progress"></circle></svg>
+                <div class="number">0%</div>
+                <p>Problem Solving</p>
+              </div>
+
+              <div class="circle" data-percent="80">
+                <svg><circle class="bg"></circle><circle class="progress"></circle></svg>
+                <div class="number">0%</div>
+                <p>Attention to Detail</p>
+              </div>
+
+              <div class="circle" data-percent="75">
+                <svg><circle class="bg"></circle><circle class="progress"></circle></svg>
+                <div class="number">0%</div>
+                <p>Communication</p>
+              </div>
+
+              <div class="circle" data-percent="75">
+                <svg><circle class="bg"></circle><circle class="progress"></circle></svg>
+                <div class="number">0%</div>
+                <p>Structured Thinking</p>
+              </div>
+            </div>
           </div>
-
-          <div class="circle" data-percent="80">
-            <svg><circle class="bg"></circle><circle class="progress"></circle></svg>
-            <div class="number">0%</div>
-            <p>Attention to Detail</p>
-          </div>
-
-          <div class="circle" data-percent="75">
-            <svg><circle class="bg"></circle><circle class="progress"></circle></svg>
-            <div class="number">0%</div>
-            <p>Communication</p>
-          </div>
-
-          <div class="circle" data-percent="75">
-            <svg><circle class="bg"></circle><circle class="progress"></circle></svg>
-            <div class="number">0%</div>
-            <p>Structured Thinking</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Projects -->
-   <section id="projects" class="section" aria-labelledby="proj-h">
-  <div class="container section-card reveal fade-up">
-    <h2 id="proj-h" class="section-title">Projects 🧪</h2>
-
-    <div class="projects-list">
-
-      <article class="project-card luxe">
-        <div class="project-media has-overlay">
-          <img
-            src="images/tampilanproject1.png"
-            alt="Sales Performance Dashboard Preview"
-            loading="lazy"
-            decoding="async"
-          >
-
-          <div class="media-overlay" aria-label="Project links">
-            <a
-              class="media-btn js-viewlive"
-              href="images/project1.png"
-              data-caption="Sales Performance Dashboard – Preview"
-              aria-label="View Live Dashboard"
-            >
-              <i class="fa-solid fa-image"></i>
-              <span>View Live</span>
-            </a>
-
-            <a
-              class="media-btn"
-              href="https://github.com/Rajunuardi/sales-performance-dashboard"
-              target="_blank"
-              rel="noopener"
-              aria-label="View Repo on GitHub"
-            >
-              <i class="fa-brands fa-github"></i>
-              <span>View Repo</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="project-content">
-          <h3 class="project-title">Sales Performance Dashboard (Excel)</h3>
-          <p class="project-subtitle">Sales Monitoring & Reporting</p>
-
-          <div class="project-tags" aria-label="Tech stack">
-            <span class="tag">Excel</span>
-            <span class="tag">Power Query</span>
-            <span class="tag">Pivot Table</span>
-            <span class="tag">Dashboard</span>
-          </div>
-
-          <p class="project-desc">
-            Dashboard interaktif yang dirancang untuk mentransformasi data transaksi mentah menjadi wawasan strategis guna memantau efisiensi penjualan dan performa wilayah secara real-time.
-          </p>
-
-          <ul class="project-points">
-            <li>✅ Melakukan <strong>Data Cleaning</strong> dan ETL menggunakan Power Query untuk memastikan akurasi dataset.</li>
-            <li>✅ Membangun dashboard dinamis dengan Pivot Table dan Slicers untuk analisis performa multi-dimensi.</li>
-            <li>✅ Memvisualisasikan KPI utama seperti tren pendapatan (Revenue Trend) dan kontribusi penjualan per wilayah.</li>
-            <li>✅ Mengimplementasikan filter waktu otomatis untuk memudahkan pemantauan pertumbuhan bisnis secara berkala.</li>
-            <li>✅ Menyusun tampilan laporan yang profesional dan intuitif bagi pemangku kepentingan (stakeholders).</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="project-card luxe">
-        <div class="project-media has-overlay">
-          <img
-            src="images/tampilanproject2.png"
-            alt="Coffee Shop Sales Analysis Preview"
-            loading="lazy"
-            decoding="async"
-          >
-
-          <div class="media-overlay" aria-label="Project links">
-            <a
-              class="media-btn"
-              href="images/coffee-shop-sales-analysis.pdf"
-              target="_blank"
-              rel="noopener"
-              aria-label="View Analysis Report"
-            >
-              <i class="fa-solid fa-file-pdf"></i>
-              <span>View Report</span>
-            </a>
-
-            <a
-              class="media-btn"
-              href="https://github.com/Rajunuardi/coffee-shop-sales-analysis-sql"
-              target="_blank"
-              rel="noopener"
-              aria-label="View Repo on GitHub"
-            >
-              <i class="fa-brands fa-github"></i>
-              <span>View Repo</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="project-content">
-          <h3 class="project-title">Coffee Shop Sales Analysis (SQL)</h3>
-          <p class="project-subtitle">Business Intelligence & Trend Analysis</p>
-
-          <div class="project-tags" aria-label="Tech stack">
-            <span class="tag">SQL</span>
-            <span class="tag">Data Analysis</span>
-            <span class="tag">Business Insight</span>
-          </div>
-
-          <p class="project-desc">
-            Analisis mendalam terhadap data transaksi ritel menggunakan SQL untuk mengekstrak pola perilaku pelanggan dan mengoptimalkan strategi operasional berbasis data.
-          </p>
-
-          <ul class="project-points">
-            <li>✅ Mengeksekusi query SQL kompleks (Aggregations & Joins) untuk menarik wawasan dari database transaksi.</li>
-            <li>✅ Mengidentifikasi <strong>Peak Hours</strong> (jam sibuk) untuk membantu optimasi manajemen jadwal staf operasional.</li>
-            <li>✅ Menganalisis pola pembelian harian dan bulanan guna menentukan tren preferensi produk pelanggan.</li>
-            <li>✅ Menghasilkan rekomendasi strategis untuk meningkatkan revenue berdasarkan produk dengan margin tertinggi.</li>
-            <li>✅ Menyusun laporan teknis yang komprehensif untuk mendukung pengambilan keputusan bisnis yang tepat.</li>
-          </ul>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-      
-
         </div>
       </div>
     </section>
 
-   <!-- Certifications -->
-<section id="certifications" class="section" aria-labelledby="cert-h">
-  <div class="container section-card reveal fade-up">
-    <h2 id="cert-h" class="section-title">Certifications 📜</h2>
+    <!-- Projects -->
+    <section id="projects" class="section" aria-labelledby="proj-h">
+      <div class="container section-card reveal fade-up">
+        <h2 id="proj-h" class="section-title">Projects 🧪</h2>
 
-    <div class="card-grid grid-limited" data-limit="2">
+        <div class="projects-list">
+          <article class="project-card luxe">
+            <div class="project-media has-overlay">
+              <img
+                src="images/tampilanproject1.png"
+                alt="Sales Performance Dashboard Preview"
+                loading="lazy"
+                decoding="async"
+              >
 
-      <!-- 1) Excel Intermediate (IMAGE) -->
-      <div class="card luxe">
-        <a href="images/excelIntermediate.webp" target="_blank" rel="noopener">
-          <img
-            src="images/excelIntermediate.webp"
-            alt="Excel Intermediate Certificate"
-            class="certificate-img"
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
+              <div class="media-overlay" aria-label="Project links">
+                <a
+                  class="media-btn js-viewlive"
+                  href="images/project1.png"
+                  data-caption="Sales Performance Dashboard – Preview"
+                  aria-label="View Live Dashboard"
+                >
+                  <i class="fa-solid fa-image"></i>
+                  <span>View Live</span>
+                </a>
 
-        <h3>Excel Intermediate</h3>
-        <p>Coding Studio · 2025</p>
-        <ul class="exp-points">
-          <li>Data cleaning, formulas, lookup functions, and analysis</li>
-        </ul>
+                <a
+                  class="media-btn"
+                  href="https://github.com/Rajunuardi/sales-performance-dashboard"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="View Repo on GitHub"
+                >
+                  <i class="fa-brands fa-github"></i>
+                  <span>View Repo</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <h3 class="project-title">Sales Performance Dashboard (Excel)</h3>
+              <p class="project-subtitle">Sales Monitoring & Reporting</p>
+
+              <div class="project-tags" aria-label="Tech stack">
+                <span class="tag">Excel</span>
+                <span class="tag">Power Query</span>
+                <span class="tag">Pivot Table</span>
+                <span class="tag">Dashboard</span>
+              </div>
+
+              <p class="project-desc">
+                Dashboard interaktif yang dirancang untuk mentransformasi data transaksi mentah menjadi wawasan strategis guna memantau efisiensi penjualan dan performa wilayah secara real-time.
+              </p>
+
+              <ul class="project-points">
+                <li>✅ Melakukan <strong>Data Cleaning</strong> dan ETL menggunakan Power Query untuk memastikan akurasi dataset.</li>
+                <li>✅ Membangun dashboard dinamis dengan Pivot Table dan Slicers untuk analisis performa multi-dimensi.</li>
+                <li>✅ Memvisualisasikan KPI utama seperti tren pendapatan (Revenue Trend) dan kontribusi penjualan per wilayah.</li>
+                <li>✅ Mengimplementasikan filter waktu otomatis untuk memudahkan pemantauan pertumbuhan bisnis secara berkala.</li>
+                <li>✅ Menyusun tampilan laporan yang profesional dan intuitif bagi pemangku kepentingan (stakeholders).</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card luxe">
+            <div class="project-media has-overlay">
+              <img
+                src="images/tampilanproject2.png"
+                alt="Coffee Shop Sales Analysis Preview"
+                loading="lazy"
+                decoding="async"
+              >
+
+              <div class="media-overlay" aria-label="Project links">
+                <a
+                  class="media-btn"
+                  href="images/coffee-shop-sales-analysis.pdf"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="View Analysis Report"
+                >
+                  <i class="fa-solid fa-file-pdf"></i>
+                  <span>View Report</span>
+                </a>
+
+                <a
+                  class="media-btn"
+                  href="https://github.com/Rajunuardi/coffee-shop-sales-analysis-sql"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="View Repo on GitHub"
+                >
+                  <i class="fa-brands fa-github"></i>
+                  <span>View Repo</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <h3 class="project-title">Coffee Shop Sales Analysis (SQL)</h3>
+              <p class="project-subtitle">Business Intelligence & Trend Analysis</p>
+
+              <div class="project-tags" aria-label="Tech stack">
+                <span class="tag">SQL</span>
+                <span class="tag">Data Analysis</span>
+                <span class="tag">Business Insight</span>
+              </div>
+
+              <p class="project-desc">
+                Analisis mendalam terhadap data transaksi ritel menggunakan SQL untuk mengekstrak pola perilaku pelanggan dan mengoptimalkan strategi operasional berbasis data.
+              </p>
+
+              <ul class="project-points">
+                <li>✅ Mengeksekusi query SQL kompleks (Aggregations & Joins) untuk menarik wawasan dari database transaksi.</li>
+                <li>✅ Mengidentifikasi <strong>Peak Hours</strong> (jam sibuk) untuk membantu optimasi manajemen jadwal staf operasional.</li>
+                <li>✅ Menganalisis pola pembelian harian dan bulanan guna menentukan tren preferensi produk pelanggan.</li>
+                <li>✅ Menghasilkan rekomendasi strategis untuk meningkatkan revenue berdasarkan produk dengan margin tertinggi.</li>
+                <li>✅ Menyusun laporan teknis yang komprehensif untuk mendukung pengambilan keputusan bisnis yang tepat.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <!-- 2) Data Analytics & Visualization (PDF) -->
-      <div class="card luxe">
-        <a
-          href="images/Data-Analytics-and-Visualization-Raju-Nuardi-Akbar.pdf#view=FitH"
-          target="_blank"
-          rel="noopener"
-        >
-          <img
-            src="images/data-analytics-visualization.webp"
-            alt="Data Analytics and Visualization Certificate – DSAREA (PDF, 6 pages)"
-            class="certificate-img"
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
+    <!-- Certifications -->
+    <section id="certifications" class="section" aria-labelledby="cert-h">
+      <div class="container section-card reveal fade-up">
+        <h2 id="cert-h" class="section-title">Certifications 📜</h2>
 
-        <h3>Data Analytics and Visualization</h3>
-        <p>DSAREA · 8 Desember – 8 Januari 2026</p>
+        <div class="card-grid grid-limited" data-limit="2">
+          <div class="card luxe">
+            <a href="images/excelIntermediate.webp" target="_blank" rel="noopener">
+              <img
+                src="images/excelIntermediate.webp"
+                alt="Excel Intermediate Certificate"
+                class="certificate-img"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
 
-        <ul class="exp-points">
-          <li>Excel (Intermediate–Advance), Power BI, Python, SQL</li>
-          <li>Data cleaning, analysis, visualization, and reporting</li>
-        </ul>
+            <h3>Excel Intermediate</h3>
+            <p>Coding Studio · 2025</p>
+            <ul class="exp-points">
+              <li>Data cleaning, formulas, lookup functions, and analysis</li>
+            </ul>
+          </div>
+
+          <div class="card luxe">
+            <a
+              href="images/Data-Analytics-and-Visualization-Raju-Nuardi-Akbar.pdf#view=FitH"
+              target="_blank"
+              rel="noopener"
+            >
+              <img
+                src="images/data-analytics-visualization.webp"
+                alt="Data Analytics and Visualization Certificate – DSAREA (PDF, 6 pages)"
+                class="certificate-img"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+
+            <h3>Data Analytics and Visualization</h3>
+            <p>DSAREA · 8 Desember – 8 Januari 2026</p>
+
+            <ul class="exp-points">
+              <li>Excel (Intermediate–Advance), Power BI, Python, SQL</li>
+              <li>Data cleaning, analysis, visualization, and reporting</li>
+            </ul>
+          </div>
+
+          <div class="card luxe">
+            <a href="images/databaseaplikasi.webp" target="_blank" rel="noopener">
+              <img
+                src="images/databaseaplikasi.webp"
+                alt="Database Application Certificate"
+                class="certificate-img"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+
+            <h3>Database Application</h3>
+            <p>Coding Studio · 2025</p>
+            <ul class="exp-points">
+              <li>Basic SQL queries, joins, and relational database concepts</li>
+            </ul>
+          </div>
+
+          <div class="card luxe">
+            <a href="images/fundamentalexcel.webp" target="_blank" rel="noopener">
+              <img
+                src="images/fundamentalexcel.webp"
+                alt="Fundamental Excel Certificate"
+                class="certificate-img"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+
+            <h3>Fundamental Excel</h3>
+            <p>Coding Studio · 2025</p>
+            <ul class="exp-points">
+              <li>Spreadsheet fundamentals, charts, and structured data</li>
+            </ul>
+          </div>
+
+          <div class="card luxe">
+            <a href="images/fundamentalalqoritma.webp" target="_blank" rel="noopener">
+              <img
+                src="images/fundamentalalqoritma.webp"
+                alt="Fundamental Algorithm Certificate"
+                class="certificate-img"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+
+            <h3>Fundamental Algorithm</h3>
+            <p>Coding Studio · 2025</p>
+            <ul class="exp-points">
+              <li>Logical thinking, flowchart, and problem solving</li>
+            </ul>
+          </div>
+
+          <div class="card luxe">
+            <a href="images/aitraining1.webp" target="_blank" rel="noopener">
+              <img
+                src="images/aitraining1.webp"
+                alt="AI Training Certificate"
+                class="certificate-img"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+
+            <h3>AI Training</h3>
+            <p>Generation Girl · 2025</p>
+            <ul class="exp-points">
+              <li>Introduction to AI concepts and applications</li>
+            </ul>
+          </div>
+        </div>
       </div>
-
-      <!-- 3) Database Application (IMAGE) -->
-      <div class="card luxe">
-        <a href="images/databaseaplikasi.webp" target="_blank" rel="noopener">
-          <img
-            src="images/databaseaplikasi.webp"
-            alt="Database Application Certificate"
-            class="certificate-img"
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
-
-        <h3>Database Application</h3>
-        <p>Coding Studio · 2025</p>
-        <ul class="exp-points">
-          <li>Basic SQL queries, joins, and relational database concepts</li>
-        </ul>
-      </div>
-
-      <!-- 4) Fundamental Excel (IMAGE) -->
-      <div class="card luxe">
-        <a href="images/fundamentalexcel.webp" target="_blank" rel="noopener">
-          <img
-            src="images/fundamentalexcel.webp"
-            alt="Fundamental Excel Certificate"
-            class="certificate-img"
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
-
-        <h3>Fundamental Excel</h3>
-        <p>Coding Studio · 2025</p>
-        <ul class="exp-points">
-          <li>Spreadsheet fundamentals, charts, and structured data</li>
-        </ul>
-      </div>
-
-      <!-- 5) Fundamental Algorithm (IMAGE) -->
-      <div class="card luxe">
-        <a href="images/fundamentalalqoritma.webp" target="_blank" rel="noopener">
-          <img
-            src="images/fundamentalalqoritma.webp"
-            alt="Fundamental Algorithm Certificate"
-            class="certificate-img"
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
-
-        <h3>Fundamental Algorithm</h3>
-        <p>Coding Studio · 2025</p>
-        <ul class="exp-points">
-          <li>Logical thinking, flowchart, and problem solving</li>
-        </ul>
-      </div>
-
-      <!-- 6) AI Training (IMAGE) -->
-      <div class="card luxe">
-        <a href="images/aitraining1.webp" target="_blank" rel="noopener">
-          <img
-            src="images/aitraining1.webp"
-            alt="AI Training Certificate"
-            class="certificate-img"
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
-
-        <h3>AI Training</h3>
-        <p>Generation Girl · 2025</p>
-        <ul class="exp-points">
-          <li>Introduction to AI concepts and applications</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- Experience -->
     <section id="experience" class="section alt" aria-labelledby="exp-h">
@@ -457,7 +473,10 @@
 
         <div class="card-grid grid-limited" data-limit="2">
           <div class="card luxe">
-            <img src="images/magangbanknagari.webp" alt="Magang Bank Nagari" loading="lazy" decoding="async" width="640" height="360">
+            <div class="card-media">
+              <img src="images/magangbanknagari.webp" alt="Magang Bank Nagari" loading="lazy" decoding="async">
+            </div>
+
             <h3>Magang Bank Nagari</h3>
             <p><strong>Agustus 2024 - September 2024</strong> · <em>Magang — Divisi Teknologi Informasi</em></p>
             <ul class="exp-points">
@@ -468,7 +487,10 @@
           </div>
 
           <div class="card luxe">
-            <img src="images/bupati.webp" alt="HMJ Teknik Informatika UPI YPTK Padang" loading="lazy" decoding="async" width="640" height="360">
+            <div class="card-media">
+              <img src="images/bupati.webp" alt="HMJ Teknik Informatika UPI YPTK Padang" loading="lazy" decoding="async">
+            </div>
+
             <h3>Himpunan Mahasiswa Jurusan Teknik Informatika UPI YPTK Padang</h3>
             <p><strong>April 2024 – April 2025</strong> · <em>Ketua Pelaksana Musyawarah Besar Ke IX</em></p>
             <ul class="exp-points">
@@ -480,7 +502,10 @@
           </div>
 
           <div class="card luxe">
-            <img src="images/pembicaraldk.webp" alt="Pemateri LDK HMJ IF" loading="lazy" decoding="async" width="640" height="360">
+            <div class="card-media">
+              <img src="images/pembicaraldk.webp" alt="Pemateri LDK HMJ IF" loading="lazy" decoding="async">
+            </div>
+
             <h3>Himpunan Mahasiswa Jurusan Teknik Informatika UPI YPTK Padang</h3>
             <p><strong>27 Oktober 2024</strong> · <em>Pemateri Latihan Dasar Kepemimpinan HMJ IF</em></p>
             <ul class="exp-points">
@@ -492,7 +517,10 @@
           </div>
 
           <div class="card luxe">
-            <img src="images/skkapel.webp" alt="Kegiatan organisasi" loading="lazy" decoding="async" width="640" height="360">
+            <div class="card-media">
+              <img src="images/skkapel.webp" alt="Kegiatan organisasi" loading="lazy" decoding="async">
+            </div>
+
             <h3>Himpunan Mahasiswa Jurusan Teknik Informatika UPI YPTK Padang</h3>
             <p><strong>Januari 2023 – April 2023</strong> · <em>Ketua Pelaksana Kegiatan</em></p>
             <ul class="exp-points">
@@ -541,15 +569,28 @@
   <script>
     const form = document.querySelector('.contact-form');
     const statusEl = document.getElementById('form-status');
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       statusEl.textContent = 'Mengirim...';
       const data = new FormData(form);
+
       try {
-        const res = await fetch(form.action, { method:'POST', body:data, headers:{ Accept:'application/json' }});
-        if (res.ok) { form.reset(); statusEl.textContent = '✅ Pesan kamu sudah terkirim! Terima kasih 🙌'; }
-        else { statusEl.textContent = '❌ Gagal mengirim pesan. Coba lagi ya.'; }
-      } catch { statusEl.textContent = '⚠️ Ada kendala jaringan, coba lagi nanti.'; }
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' }
+        });
+
+        if (res.ok) {
+          form.reset();
+          statusEl.textContent = '✅ Pesan kamu sudah terkirim! Terima kasih 🙌';
+        } else {
+          statusEl.textContent = '❌ Gagal mengirim pesan. Coba lagi ya.';
+        }
+      } catch {
+        statusEl.textContent = '⚠️ Ada kendala jaringan, coba lagi nanti.';
+      }
     });
   </script>
 
@@ -561,39 +602,42 @@
   <!-- Scroll-to-top -->
   <button id="scrollTopBtn" aria-label="Kembali ke atas">↑</button>
 
-  <!-- Lightbox (UPDATED: ada tombol kembali + wrapper) -->
-<div id="lightbox" class="lightbox" aria-modal="true" role="dialog" aria-label="Image lightbox" hidden>
-  
-  <!-- tombol kembali (tanpa refresh) -->
-  <button type="button" class="lb-back" aria-label="Kembali">
-    <i class="fa-solid fa-arrow-left"></i>
-    Kembali
-  </button>
+  <!-- Lightbox -->
+  <div
+    id="lightbox"
+    class="lightbox"
+    aria-modal="true"
+    role="dialog"
+    aria-label="Image lightbox"
+    hidden
+  >
+    <button type="button" class="lb-back" aria-label="Kembali">
+      <i class="fa-solid fa-arrow-left"></i>
+      Kembali
+    </button>
 
-  <!-- tombol tutup -->
-  <span class="close" role="button" aria-label="Tutup">×</span>
+    <!-- FIX: close pakai button (lebih aksesibel) -->
+    <button type="button" class="close" aria-label="Tutup">×</button>
 
-  <!-- wrapper agar gambar bisa besar & center -->
-  <div class="lb-inner">
-    <img class="lightbox-content" id="lightbox-img" alt="">
-    <div id="caption"></div>
+    <div class="lb-inner">
+      <img class="lightbox-content" id="lightbox-img" alt="Preview">
+      <div id="caption"></div>
+    </div>
   </div>
-
-</div>
-
 
   <!-- CV Language Choice Modal -->
   <div id="cvChoice" class="cv-choice" hidden>
-    <div class="cv-box" role="dialog" aria-modal="true" aria-labelledby="cvChoiceTitle">
-      <button class="cv-close" type="button" aria-label="Tutup">×</button>
-      <h3 id="cvChoiceTitle">Pilih Bahasa CV</h3>
-      <p>Pilih versi CV yang ingin kamu download:</p>
-      <div class="cv-buttons">
-        <a href="cv_indonesia.pdf" download class="btn btn-primary" id="cvIndo">🇮🇩 CV Indonesia</a>
-        <a href="cv_english.pdf" download class="btn btn-outline" id="cvEng">🇬🇧 CV English</a>
-      </div>
+  <div class="cv-box" role="dialog" aria-modal="true" aria-labelledby="cvChoiceTitle">
+    <button class="cv-close" type="button" aria-label="Tutup">×</button>
+    <h3 id="cvChoiceTitle">Pilih Bahasa CV</h3>
+    <p>Pilih versi CV yang ingin kamu download:</p>
+    <div class="cv-buttons">
+      <a href="cv_indonesia.pdf" download class="btn" id="cvIndo">🇮🇩 CV Indonesia</a>
+      <a href="cv_english.pdf" download class="btn-outline" id="cvEng">🇬🇧 CV English</a>
     </div>
   </div>
+</div>
+
 
   <script src="script.js" defer></script>
 </body>
