@@ -974,3 +974,41 @@ strong { color:#fff; }
   outline-offset:3px;
 }
 
+/* =========================
+   MOBILE FIX — ABOUT TOO BIG
+   Tempel di PALING BAWAH style.css
+   ========================= */
+@media (max-width: 520px){
+
+  /* section spacing lebih rapat */
+  .section{ padding:56px 0; }
+  .section-card{ padding:1.1rem; border-radius:14px; }
+
+  /* judul biar ga kegedean */
+  .section-title{ font-size:1.45rem; margin-bottom:1rem; }
+
+  /* About layout: jangan center semua, bikin rapi */
+  .about-body{ gap:1rem; }
+  .about-bio{ text-align:left; }
+  .about-bio p{
+    font-size:.92rem;
+    line-height:1.55;
+  }
+
+  /* highlight list diperkecil biar tidak makan layar */
+  .about-highlights{ gap:.55rem; }
+  .about-highlights li{
+    padding:.45rem .6rem;      /* lebih kecil */
+    font-size:.9rem;
+    line-height:1.45;
+  }
+
+  /* kotak stats diperkecil */
+  .about-aside{ gap:.6rem; }
+  .about-stat{ padding:.65rem .55rem; border-radius:12px; }
+  .about-stat span{ font-size:1.05rem; }
+  .about-stat small{ font-size:.72rem; }
+
+  /* biar kotak stats tidak terlalu lebar visualnya */
+  .about-aside{ grid-template-columns:repeat(3, 1fr); }
+}
