@@ -133,19 +133,24 @@ body {
 }
 .card:hover { transform:translateY(-6px); box-shadow:0 12px 28px rgba(2,6,23,.28); border-color:rgba(255,255,255,.26); }
 
-.card img, .certificate-img {
+/* ===== Certifications thumbnail (tidak kepotong berlebihan & aman di mobile) ===== */
+.certificate-img{
   display:block;
   width:100%;
-  height:220px;
-  object-fit:cover;
+  height:auto;                 /* kunci: jangan fixed */
+  aspect-ratio: 16 / 9;        /* thumbnail tetap rapi */
+  object-fit: cover;           /* crop hanya untuk thumbnail */
   border-radius:10px;
   margin:0 auto 1rem;
   box-shadow:0 4px 14px rgba(0,0,0,.22);
   cursor: zoom-in;
 }
-@media (max-width:768px){
-  .card img, .certificate-img { height:180px; }
+
+/* kalau mau sedikit lebih tinggi di desktop */
+@media (min-width: 769px){
+  .certificate-img{ aspect-ratio: 3 / 2; }
 }
+
 
 /* =======================
    About
@@ -719,4 +724,43 @@ footer { background:rgba(17,24,39,.6); color:#cbd5e1; text-align:center; padding
 .lightbox-content {
   display: block;
   touch-action: pan-x pan-y;
+}
+/* ===== FIX: Lightbox certificate tampil full di mobile ===== */
+.lightbox {
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox .lb-inner{
+  width: min(1200px, 96vw);
+  height: calc(100vh - 140px);
+  overflow: auto;               /* kalau butuh scroll */
+}
+
+/* Ini yang paling penting */
+.lightbox .lightbox-content{
+  width: min(1200px, 96vw) !important;
+  height: auto !important;
+  max-height: calc(100vh - 200px) !important;
+  object-fit: contain !important; /* biar FULL kelihatan */
+}
+
+/* Kalau ternyata lightbox-content kamu adalah iframe/embed (PDF) */
+.lightbox iframe.lightbox-content,
+.lightbox embed.lightbox-content{
+  width: min(1200px, 96vw) !important;
+  height: calc(100vh - 200px) !important;
+  max-height: none !important;
+  border: 0;
+}
+
+/* Mobile */
+@media (max-width: 520px){
+  .lightbox .lb-inner{
+    width: 96vw;
+    height: calc(100vh - 160px);
+  }
+  .lightbox .lightbox-content{
+    max-height: calc(100vh - 240px) !important;
+  }
 }
