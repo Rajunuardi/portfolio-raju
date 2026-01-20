@@ -713,9 +713,6 @@ footer { background:rgba(17,24,39,.6); color:#cbd5e1; text-align:center; padding
   outline:2px solid #22d3ee; outline-offset:3px; border-radius:10px;
 }
 
-@media (prefers-reduced-motion:reduce) {
-  *, *::before, *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
-}
 
 /* ===== Experience image fix (anti turun / anti kepotong aneh) ===== */
 #experience .card-media{
@@ -1173,5 +1170,37 @@ strong { color:#fff; }
 @media(max-width:480px){
   .tools-grid{
     grid-template-columns:repeat(2,1fr);
+  }
+}
+/* Fallback: tanpa JS = tetap tampil */
+.reveal-item{
+  opacity: 1;
+  transform: none;
+}
+
+/* Kalau JS aktif, baru disembunyikan dulu untuk animasi */
+.js .reveal-item{
+  opacity: 0;
+  transform: translateY(18px) scale(.98);
+  transition:
+    opacity .7s cubic-bezier(.16,1,.3,1),
+    transform .7s cubic-bezier(.16,1,.3,1);
+  will-change: opacity, transform;
+}
+
+.js .reveal-item.in{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+
+  /* Matikan animasi berat saja */
+  .spinner,
+  .fx-ambient .blob{
+    animation: none !important;
   }
 }

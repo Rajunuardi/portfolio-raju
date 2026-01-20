@@ -567,3 +567,62 @@ function animateCircles() {
     });
   });
 })();
+
+/* =========================================
+   Fade + Up + Stagger (Skills & Tools)
+   ========================================= */
+(() => {
+  const groups = document.querySelectorAll(".tools-grid, .skill-cards");
+  if (!groups.length) return;
+
+  // state awal
+  groups.forEach(group => {
+    group.querySelectorAll(".tool-card, .skill-card").forEach(el => {
+      el.classList.add("reveal-item");
+      el.classList.remove("in");
+      el.style.transitionDelay = "0ms";
+    });
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      const groupItems = Array.from(
+        entry.target.querySelectorAll(".tool-card, .skill-card")
+      );
+
+      groupItems.forEach((el, i) => {
+        el.style.transitionDelay = (i * 80) + "ms";
+      });
+
+      requestAnimationFrame(() => {
+        groupItems.forEach((el) => el.classList.add("in"));
+      });
+
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.25 });
+
+  groups.forEach((g) => io.observe(g));
+})();
+
+(() => {
+  const grid = document.querySelector(".tools-grid");
+  if (!grid) return;
+
+  const items = Array.from(grid.querySelectorAll(".tool-card"));
+
+  const io = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+
+    items.forEach((el, i) => {
+      el.style.transitionDelay = (i * 80) + "ms";
+      el.classList.add("in");
+    });
+
+    io.disconnect();
+  }, { threshold: 0.2 });
+
+  io.observe(grid);
+})();

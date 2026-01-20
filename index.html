@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="js">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -136,8 +137,8 @@
       </div>
     </section>
 
-    <!-- Skills -->
-  <section id="skills" class="section" aria-labelledby="skills-h">
+   <!-- Skills -->
+<section id="skills" class="section" aria-labelledby="skills-h">
   <div class="container section-card luxe">
     <h2 id="skills-h" class="section-title">Skills & Tools 🧰</h2>
 
@@ -200,20 +201,84 @@
 </section>
 
 
-
-    <!-- Projects -->
    <!-- Projects -->
 <section id="projects" class="section" aria-labelledby="proj-h">
   <div class="container section-card reveal fade-up">
     <h2 id="proj-h" class="section-title">Projects 🧪</h2>
 
-    <div class="projects-list">
+    <!-- ✅ Auto limit 2 items + tombol dibuat otomatis oleh JS (Grid-limited) -->
+    <div class="projects-list grid-limited" data-limit="2">
+
+      <!-- Project 0: Tableau (NEW) -->
+      <article class="project-card luxe">
+        <div class="project-media has-overlay">
+          <img
+            src="images/project/us-flight-delays-tableau.webp"
+            alt="Dashboard Keterlambatan Penerbangan AS (Tableau)"
+            loading="lazy"
+            decoding="async"
+          >
+
+          <div class="media-overlay" aria-label="Tautan project">
+            <a
+              class="media-btn"
+              href="https://public.tableau.com/app/profile/raju.nuardi.akbar/viz/USFlightDelaysDashboard20172022/Dashboard1"
+              target="_blank"
+              rel="noopener"
+              aria-label="Lihat Dashboard di Tableau Public"
+            >
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              <span>View Dashboard</span>
+            </a>
+
+            <a
+              class="media-btn"
+              href="https://github.com/Rajunuardi/us-flight-delays-dashboard"
+              target="_blank"
+              rel="noopener"
+              aria-label="Lihat Repository di GitHub"
+            >
+              <i class="fa-brands fa-github"></i>
+              <span>View Repo</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-content">
+          <h3 class="project-title">Dashboard Keterlambatan Penerbangan Amerika Serikat</h3>
+          <p class="project-subtitle">
+            Data Cleaning dengan Excel & Visualisasi Dashboard Interaktif dengan Tableau
+          </p>
+
+          <div class="project-tags" aria-label="Tech stack">
+            <span class="tag">Tableau</span>
+            <span class="tag">Excel</span>
+            <span class="tag">Data Cleaning</span>
+            <span class="tag">Visualisasi Data</span>
+            <span class="tag">Dashboard</span>
+          </div>
+
+          <p class="project-desc">
+            Dashboard interaktif untuk menganalisis keterlambatan penerbangan di Amerika Serikat berdasarkan data Kaggle
+            periode 2017–2022. Menampilkan kontribusi penyebab keterlambatan, tren waktu, perbandingan performa maskapai,
+            serta sebaran geografis delay untuk mendukung insight berbasis data.
+          </p>
+
+          <ul class="project-points">
+            <li>✅ Membersihkan dan menyiapkan data mentah menggunakan <strong>Excel</strong> (missing value, perbaikan format, dan standarisasi data).</li>
+            <li>✅ Menyeragamkan seluruh metrik keterlambatan ke <strong>satuan menit</strong> agar analisis konsisten antar kategori.</li>
+            <li>✅ Menghitung <strong>Total Arrival Delay</strong> serta kontribusi kategori (Carrier, Late Aircraft, NAS, Weather, Security).</li>
+            <li>✅ Membangun <strong>dashboard interaktif di Tableau</strong> berisi KPI utama, grafik tren waktu, perbandingan maskapai, dan peta sebaran delay.</li>
+            <li>✅ Menyediakan <strong>filter waktu (bulan & tahun)</strong> untuk melihat pola musiman serta perubahan tren dari waktu ke waktu.</li>
+          </ul>
+        </div>
+      </article>
 
       <!-- Project 1: Looker Studio -->
       <article class="project-card luxe">
         <div class="project-media has-overlay">
           <img
-            src="images/tampilanproject3.png"
+            src="images/project/tampilanproject3.webp"
             alt="E-Commerce Sales Dashboard (Looker Studio) Preview"
             loading="lazy"
             decoding="async"
@@ -256,7 +321,8 @@
           </div>
 
           <p class="project-desc">
-            Dashboard interaktif untuk memantau performa penjualan e-commerce (Sales, Profit, Orders, Quantity) dengan filter tanggal dinamis dan breakdown berdasarkan kategori, region, produk, dan metode pembayaran.
+            Dashboard interaktif untuk memantau performa penjualan e-commerce (Sales, Profit, Orders, Quantity)
+            dengan filter tanggal dinamis dan breakdown berdasarkan kategori, region, produk, dan metode pembayaran.
           </p>
 
           <ul class="project-points">
@@ -273,8 +339,8 @@
       <article class="project-card luxe">
         <div class="project-media has-overlay">
           <img
-            src="images/tampilanproject1.png"
-            alt="Sales Performance Dashboard Preview"
+            src="images/project/tampilanproject1.webp"
+            alt="Sales Performance Dashboard (Excel) Preview"
             loading="lazy"
             decoding="async"
           >
@@ -315,7 +381,8 @@
           </div>
 
           <p class="project-desc">
-            Dashboard interaktif yang dirancang untuk mentransformasi data transaksi mentah menjadi wawasan strategis guna memantau efisiensi penjualan dan performa wilayah secara real-time.
+            Dashboard interaktif yang dirancang untuk mentransformasi data transaksi mentah menjadi wawasan strategis
+            guna memantau efisiensi penjualan dan performa wilayah secara real-time.
           </p>
 
           <ul class="project-points">
@@ -332,8 +399,8 @@
       <article class="project-card luxe">
         <div class="project-media has-overlay">
           <img
-            src="images/tampilanproject2.png"
-            alt="Coffee Shop Sales Analysis Preview"
+            src="images/project/tampilanproject2.webp"
+            alt="Coffee Shop Sales Analysis (SQL) Preview"
             loading="lazy"
             decoding="async"
           >
@@ -374,7 +441,8 @@
           </div>
 
           <p class="project-desc">
-            Analisis mendalam terhadap data transaksi ritel menggunakan SQL untuk mengekstrak pola perilaku pelanggan dan mengoptimalkan strategi operasional berbasis data.
+            Analisis mendalam terhadap data transaksi ritel menggunakan SQL untuk mengekstrak pola perilaku pelanggan
+            dan mengoptimalkan strategi operasional berbasis data.
           </p>
 
           <ul class="project-points">
