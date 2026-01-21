@@ -380,6 +380,50 @@ strong { color: #fff; }
 @media (min-width: 769px){
   .certificate-img{ aspect-ratio: 3 / 2; }
 }
+/* =======================
+   Certifications – Clean Grid
+   ======================= */
+
+.cert-card{
+  text-align: center;
+  padding: 1.1rem;
+}
+
+.cert-card .certificate-img{
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: .9rem;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+/* hover biar hidup */
+.cert-card:hover .certificate-img{
+  transform: scale(1.04);
+  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+}
+
+.cert-title{
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: .2rem;
+}
+
+.cert-meta{
+  font-size: .85rem;
+  color: #cbd5e1;
+}
+
+/* mobile rapihin jarak */
+@media (max-width: 480px){
+  .cert-title{
+    font-size: .95rem;
+  }
+  .cert-meta{
+    font-size: .8rem;
+  }
+}
 
 /* =======================
    About
@@ -445,18 +489,80 @@ strong { color: #fff; }
   margin-top: 1.5rem;
 }
 
+/* TOOL CARD - FINAL (no duplicate) */
 .tool-card{
-  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-  border: 1px solid rgba(255,255,255,.14);
+  position: relative;
+  overflow: hidden;
   border-radius: 16px;
   padding: 1.2rem .8rem;
   text-align: center;
-  transition: .3s;
+
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  border: 1px solid rgba(255,255,255,.14);
+
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  transform: translateY(0) scale(1);
+
+  /* animasi float halus */
+  animation: toolFloat 3.6s ease-in-out infinite;
 }
 
+.tool-card:nth-child(2){ animation-delay: .2s; }
+.tool-card:nth-child(3){ animation-delay: .4s; }
+.tool-card:nth-child(4){ animation-delay: .6s; }
+.tool-card:nth-child(5){ animation-delay: .8s; }
+.tool-card:nth-child(6){ animation-delay: 1s; }
+.tool-card:nth-child(7){ animation-delay: 1.2s; }
+.tool-card:nth-child(8){ animation-delay: 1.4s; }
+.tool-card:nth-child(9){ animation-delay: 1.6s; }
+
+/* glow gradient layer */
+.tool-card::before{
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  background: linear-gradient(90deg, #22d3ee, #7c3aed, #fb7185, #facc15, #22d3ee);
+  background-size: 300% 300%;
+  opacity: 0;
+  filter: blur(10px);
+  z-index: 0;
+  transition: opacity .35s ease;
+  animation: toolGlow 6s ease infinite;
+}
+
+/* inner layer */
+.tool-card::after{
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+  z-index: 1;
+}
+
+.tool-card > *{
+  position: relative;
+  z-index: 2;
+}
+
+/* hover */
+.tool-card:hover{
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 18px 40px rgba(0,0,0,.40);
+  border-color: rgba(255,255,255,.26);
+}
+.tool-card:hover::before{ opacity: 1; }
+
+/* icon */
 .tool-card i{
   font-size: 2.4rem;
   margin-bottom: .6rem;
+  transition: transform .35s ease, filter .35s ease;
+}
+.tool-card:hover i{
+  transform: scale(1.18);
+  filter: drop-shadow(0 12px 18px rgba(34,211,238,.35));
 }
 
 .tool-card h4{
@@ -464,15 +570,25 @@ strong { color: #fff; }
   font-size: 1rem;
   color: #fff;
 }
-
 .tool-card p{
   font-size: .8rem;
   color: #cbd5e1;
 }
 
-.tool-card:hover{
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(0,0,0,.35);
+/* keyframes */
+@keyframes toolGlow{
+  0%{ background-position: 0% 50%; }
+  50%{ background-position: 100% 50%; }
+  100%{ background-position: 0% 50%; }
+}
+@keyframes toolFloat{
+  0%, 100%{ transform: translateY(0); }
+  50%{ transform: translateY(-6px); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .tool-card{ animation: none !important; }
+  .tool-card::before{ animation: none !important; }
 }
 
 /* warna per tools */
@@ -517,14 +633,25 @@ strong { color: #fff; }
   overflow: hidden;
   border: 1px solid rgba(255,255,255,.12);
   background: rgba(255,255,255,.03);
+
+  /* 🔒 kunci ukuran */
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* bikin cover project seragam */
+.project-media{
+  aspect-ratio: 16 / 9;
 }
 
 .project-media img{
   width: 100%;
-  height: 240px;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
-  transition: transform .35s ease, filter .35s ease;
 }
 
 .project-card:hover .project-media img{ transform: scale(1.03); }
@@ -651,6 +778,50 @@ strong { color: #fff; }
   border-color: rgba(255,255,255,.35);
   outline: none;
 }
+/* =======================
+   Project CTA Hint (Always Visible)
+   ======================= */
+
+.project-media{
+  position: relative;
+}
+
+/* badge CTA */
+.project-cta{
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  font-size: .8rem;
+  font-weight: 800;
+  letter-spacing: .2px;
+
+  color: #0b1020;
+  background: linear-gradient(135deg, #22d3ee, #7c3aed);
+
+  box-shadow: 0 8px 18px rgba(124,58,237,.35);
+  pointer-events: none; /* biar klik tetap ke overlay */
+
+  z-index: 2;
+}
+
+/* hover: CTA ikut naik dikit */
+.project-card:hover .project-cta{
+  transform: translateY(-2px);
+}
+
+/* mobile: CTA full width biar jelas */
+@media (max-width: 520px){
+  .project-cta{
+    left: 10px;
+    right: 10px;
+    text-align: center;
+  }
+}
+
 
 /* =======================
    Experience / Certifications list points
@@ -681,6 +852,48 @@ strong { color: #fff; }
   aspect-ratio: 16 / 9;
   object-fit: cover;
 }
+/* =======================
+   Experience (Collapsible)
+   ======================= */
+.exp-card .exp-head h3{
+  margin-top: .2rem;
+}
+
+.exp-meta{
+  color: #cbd5e1;
+  margin-top: .25rem;
+  line-height: 1.4;
+}
+
+/* tombol detail */
+.exp-toggle{
+  width: 100%;
+  margin-top: .9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,.14);
+
+  background: linear-gradient(135deg, rgba(34,211,238,.14), rgba(124,58,237,.14));
+  color: #e5e7eb;
+  font-weight: 800;
+}
+
+.exp-toggle i{
+  transition: transform .25s ease;
+}
+
+.exp-body{
+  margin-top: .75rem;
+  padding-top: .5rem;
+  border-top: 1px solid rgba(255,255,255,.10);
+}
+
 
 /* =======================
    Contact
@@ -810,13 +1023,8 @@ footer{
   .project-card{
     grid-template-columns: 1fr;
   }
-
-  .project-media img{
-    height: auto;
-    max-height: 260px;
-    object-fit: cover;
-  }
 }
+
 
 .lightbox #caption{
   margin-top: .35rem;
@@ -1089,4 +1297,354 @@ footer{
 
 .grid-toggle .btn{
   min-width:200px;   /* opsional, biar rapi */
+}
+/* ======================================
+   PROJECTS – FIX SERAGAM (MOBILE)
+   ====================================== */
+
+/* Card mobile jadi 1 kolom */
+@media (max-width: 860px){
+  .project-card{ grid-template-columns: 1fr; }
+}
+
+/* FRAME cover: kunci ukuran sama semua */
+.project-media{
+  width: 100%;
+  aspect-ratio: 16 / 9;     /* ini kunci seragam */
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+  position: relative;
+}
+
+/* GAMBAR: paksa ngisi frame */
+.project-media img{
+  width: 100%;
+  height: 100%;             /* WAJIB 100% */
+  object-fit: cover;        /* crop rapi */
+  object-position: center;
+  display: block;
+  transition: transform .35s ease, filter .35s ease;
+}
+
+/* Hover zoom */
+.project-card:hover .project-media img{
+  transform: scale(1.03);
+}
+
+/* Overlay (tetap) */
+.project-media.has-overlay > .media-overlay{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .35s ease, transform .35s ease;
+
+  pointer-events: none;
+  z-index: 3;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,.45) 0%,
+    rgba(0,0,0,.22) 45%,
+    rgba(0,0,0,.06) 100%
+  );
+}
+
+.project-media.has-overlay:hover > .media-overlay,
+.project-media.has-overlay:focus-within > .media-overlay{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* GANTI selector lama yang pakai > img */
+.project-media.has-overlay:hover img,
+.project-media.has-overlay:focus-within img{
+  transform: scale(1.06);
+  filter: saturate(1.12) contrast(1.05);
+}
+
+/* ======================================
+   FIX tombol overlay biar SAMA ukuran (mobile)
+   ====================================== */
+.project-media.has-overlay .media-btn{
+  min-width: 140px;          /* bikin konsisten */
+  justify-content: center;
+}
+
+@media (max-width: 520px){
+  .project-media.has-overlay > .media-overlay{
+    gap: 10px;
+  }
+  .project-media.has-overlay .media-btn{
+    min-width: 120px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    font-size: .9rem;
+  }
+}
+/* =======================
+   Projects - Details Toggle (HTML <details>)
+   ======================= */
+
+.project-details{
+  margin-top: .65rem;
+}
+
+/* hilangkan marker bawaan details */
+.project-details summary{
+  list-style: none;
+}
+.project-details summary::-webkit-details-marker{
+  display: none;
+}
+
+/* summary jadi button */
+.project-summary{
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+
+  padding: .55rem .85rem;
+  border-radius: 12px;
+
+  cursor: pointer;
+  user-select: none;
+
+  color: #e5e7eb;
+  font-weight: 800;
+  font-size: .92rem;
+
+  border: 1px solid rgba(255,255,255,.16);
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  box-shadow: 0 10px 22px rgba(2,6,23,.20);
+
+  transition: transform .18s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.project-summary:hover{
+  transform: translateY(-1px);
+  background: linear-gradient(180deg, rgba(34,211,238,.14), rgba(124,58,237,.10));
+  border-color: rgba(255,255,255,.28);
+  box-shadow: 0 14px 26px rgba(2,6,23,.28);
+}
+
+.project-summary:focus-visible{
+  outline: 2px solid #22d3ee;
+  outline-offset: 3px;
+}
+
+/* icon panah */
+.project-summary i{
+  transition: transform .25s ease;
+}
+
+/* saat open, panah muter */
+.project-details[open] .project-summary i{
+  transform: rotate(180deg);
+}
+
+/* isi detail biar rapih + ada jarak */
+.project-details > :not(summary){
+  margin-top: .9rem;
+}
+
+/* (opsional) animasi munculnya konten */
+.project-details[open] > :not(summary){
+  animation: projDetailIn .25s ease;
+}
+
+@keyframes projDetailIn{
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* mobile: bikin tombol full-width biar enak diklik */
+@media (max-width: 520px){
+  .project-summary{
+    width: 100%;
+    justify-content: center;
+  }
+}
+/* =======================
+   Elegant Footer
+   ======================= */
+.footer{
+  margin-top: 3rem;
+  padding: 1.6rem 1rem;
+  text-align: center;
+
+  background: linear-gradient(
+    135deg,
+    rgba(34,211,238,.10),
+    rgba(124,58,237,.12)
+  );
+
+  border-top: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 -10px 30px rgba(2,6,23,.35);
+}
+
+.footer p{
+  font-size: .9rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+.footer strong{
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.footer .accent{
+  background: linear-gradient(90deg, #22d3ee, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 600;
+}
+
+.footer .heart{
+  color: #fb7185;
+  display: inline-block;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+/* animasi kecil, halus */
+@keyframes pulse{
+  0%, 100%{ transform: scale(1); }
+  50%{ transform: scale(1.15); }
+}
+/* =======================
+   CV BUTTON + MODAL (Premium)
+   ======================= */
+
+/* button di navbar */
+.btn-cv{
+  height: 48px;
+  border-radius: 14px;
+  padding: 0 1.3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  letter-spacing: .2px;
+  box-shadow: 0 12px 28px rgba(124,58,237,.28);
+  position: relative;
+}
+
+.btn-cv::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, rgba(34,211,238,.55), rgba(124,58,237,.55), rgba(251,113,133,.45));
+  filter: blur(12px);
+  opacity: .35;
+  z-index: -1;
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.btn-cv:hover::after{
+  opacity: .75;
+  transform: translateY(-2px);
+}
+
+/* overlay modal */
+.cv-choice{
+  background: radial-gradient(1200px 800px at 50% 30%, rgba(124,58,237,.22), rgba(0,0,0,.72));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* box modal */
+.cv-box{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow: 0 22px 70px rgba(0,0,0,.62);
+  overflow: hidden;
+  position: relative;
+}
+
+/* header */
+.cv-head{
+  padding: 1.2rem 1.2rem .85rem;
+  text-align: center;
+}
+
+.cv-icon{
+  width: 58px;
+  height: 58px;
+  margin: 0 auto .65rem;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(34,211,238,.18), rgba(124,58,237,.18));
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+}
+
+.cv-icon i{ font-size: 1.35rem; color: #e5e7eb; }
+
+.cv-box h3{
+  font-size: 1.15rem;
+  margin: 0 0 .25rem 0;
+  color: #fff;
+}
+
+.cv-box p{
+  margin: 0;
+  color: #cbd5e1;
+  font-size: .95rem;
+}
+
+/* tombol */
+.cv-buttons{
+  padding: .9rem 1.2rem 1rem;
+}
+
+.cv-btn-primary,
+.cv-btn-secondary{
+  width: 100%;
+  height: 48px;
+  border-radius: 14px;
+  justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+}
+
+.cv-btn-primary{
+  box-shadow: 0 14px 36px rgba(124,58,237,.28);
+}
+
+.cv-btn-secondary{
+  margin-top: .75rem;
+  border-width: 1.5px;
+}
+
+/* note */
+.cv-note{
+  padding: 0 1.2rem 1.2rem;
+  text-align: center;
+  font-size: .86rem;
+  color: rgba(226,232,240,.85);
+}
+
+/* close */
+.cv-close{
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.08);
+  transition: transform .15s ease, background .15s ease;
+}
+
+.cv-close:hover{
+  background: rgba(255,255,255,.14);
+  transform: translateY(-1px);
 }

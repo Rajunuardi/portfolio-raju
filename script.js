@@ -171,6 +171,13 @@
 
     revealEls.forEach((el) => io.observe(el));
   })();
+/* ========== Tools stagger delay (muncul satu-satu) ========== */
+(() => {
+  const items = document.querySelectorAll("#skills .tool-card.reveal-item");
+  items.forEach((el, i) => {
+    el.style.setProperty("--d", `${i * 70}ms`);
+  });
+})();
 
   /* ========== Typing effect (simple) ========== */
   (() => {
@@ -445,3 +452,16 @@ certThumbs.forEach((img) => {
     });
   })();
 })();
+document.querySelectorAll(".exp-toggle").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const id = btn.getAttribute("aria-controls");
+    const panel = document.getElementById(id);
+    const isOpen = btn.getAttribute("aria-expanded") === "true";
+
+    btn.setAttribute("aria-expanded", String(!isOpen));
+    panel.hidden = isOpen;
+
+    const icon = btn.querySelector("i");
+    if (icon) icon.style.transform = isOpen ? "rotate(0deg)" : "rotate(180deg)";
+  });
+});
